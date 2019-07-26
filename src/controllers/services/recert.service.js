@@ -31,16 +31,16 @@ class RecertService {
         test_measurement_error,
       } = req.body;
       const [seal, date] = await Promise.all([
-        `nemsa/${state
+        `nemsa-${state
           .replace(/\s/g, '')
-          .toLowerCase()}/${crypto.randomBytes(5).toString('hex')}`,
+          .toLowerCase()}-${crypto.randomBytes(5).toString('hex')}`,
         RecertService.addYear(new Date(), 2),
       ]);
       const expiry_date_after_recert = date;
 
       const recert = new Recert({
         disco,
-        state,
+        state: state.replace(/ /g, ''),
         business_unit_name,
         customer_name,
         customer_address,
@@ -59,6 +59,7 @@ class RecertService {
         expiry_date_after_recert,
         tariff_charges,
         test_measurement_error,
+        staff_id: req.user_id,
       });
       const meter = await Recert.findOne({
         meter_number,

@@ -1,4 +1,5 @@
-import Joi from 'joi';
+import Joi from '@hapi/joi';
+
 import Schemas from './schema/paramSchema';
 
 const paramValidation = (req, res, next) => {

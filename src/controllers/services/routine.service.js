@@ -28,7 +28,7 @@ class RoutineService {
         tariff_charges,
       } = req.body;
       const [seal, date] = await Promise.all([
-        `nemsa/${state.replace(/\s/g, '').toLowerCase()}/${crypto.randomBytes(5).toString('hex')}`,
+        `nemsa-${state.replace(/\s/g, '').toLowerCase()}-${crypto.randomBytes(5).toString('hex')}`,
         RoutineService.addYear(new Date(), 2),
       ]);
       const expiry_date_after_routine_test = date;
@@ -42,7 +42,7 @@ class RoutineService {
         yom,
         batch_id,
         batch_qty,
-        state,
+        state: state.replace(/ /g, ''),
         meter_model,
         meter_class,
         meter_type,
@@ -51,6 +51,7 @@ class RoutineService {
         expiry_date_after_routine_test,
         tariff_charges,
         seal,
+        staff_id: req.user_id,
       });
       const meter = await Routine.findOne({
         meter_number,

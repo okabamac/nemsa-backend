@@ -38,9 +38,10 @@ class TypeService {
         date_certified,
         vendor_email,
         seal,
-        state,
+        state: state.replace(/ /g, ''),
         vendor_phone_number,
         expiry_date_after_cert,
+        staff_id: req.user_id,
       });
       const meter = await Type.findOne({
         meter_number,

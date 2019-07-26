@@ -20,7 +20,8 @@ const RoutineSchema = new Schema({
   meter_number: { type: Number, required: true },
   date_of_routine_test: { type: Date, required: true },
   expiry_date_after_routine_test: { type: Date, required: true },
-  tariff_charges: { type: String, required: true }
+  tariff_charges: { type: String, required: true },
+  staff_id: { type: String, required: true },
 });
 const Routine = mongoose.model('Routine', RoutineSchema);
 

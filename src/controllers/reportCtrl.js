@@ -22,10 +22,32 @@ class ReportControls {
   static async byState(req, res) {
     try {
       const j = await ReportControls.search(req);
-      const data = await Tests[j]
-        .find({
-          state: req.query.state,
-        });
+      const data = await Tests[j].aggregate([
+        {
+          $project: {
+            month: { $month: '$date_added' },
+            state: 1,
+            date_of_routine_test: 1,
+            expiry_date_after_routine_test: 1,
+            vendor_name: 1,
+            seal: 1,
+            date_certified: 1,
+            expiry_date_after_cert: 1,
+            business_unit_name: 1,
+            date_of_last_recert: 1,
+          },
+        },
+        {
+          $match: {
+            month: Number(req.query.month),
+            state: req.query.state.replace(/ /g, ''),
+          },
+        },
+      ]);
+
+      if (data.length === 0) {
+        return response.sendSuccess(res, 404, 'No available Data');
+      }
       return response.sendSuccess(
         res,
         200,
@@ -61,6 +83,9 @@ class ReportControls {
             $lt: `${req.query.to}`,
           },
         });
+      if (data.length === 0) {
+        return response.sendSuccess(res, 404, 'No available Data');
+      }
       return response.sendSuccess(
         res,
         200,
@@ -80,8 +105,12 @@ class ReportControls {
     try {
       const data = await Tests[0].find({
         batch_id: req.query.batch_id,
+        staff_id: req.query.staff_id,
       });
-      return response.sendSuccess(res, 200, data, 'Data successfully retrieved');
+      if (data.length === 0) {
+        return response.sendSuccess(res, 404, 'No available Data');
+      }
+      return response.sendSuccess(res, 200, data);
     } catch (err) {
       return response.sendSuccess(
         res,

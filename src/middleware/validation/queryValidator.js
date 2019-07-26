@@ -1,7 +1,7 @@
-import Joi from 'joi';
+import Joi from '@hapi/joi';
 import Schemas from './schema/querySchema';
 
-const queryValidation = (req, res, next) => {
+const paramValidation = (req, res, next) => {
   // enabled HTTP methods for request data validation
   const supportedMethods = ['get'];
 
@@ -29,11 +29,9 @@ const queryValidation = (req, res, next) => {
             const SimplifiedError = {
               status: 400,
               error: err.details
-                ? err.details[0].message
-                  .replace(/['"]/g, '')
+                ? err.details[0].message.replace(/['"]/g, '')
                 : err.message,
             };
-
             // Send back the JSON error response
             return res.status(400).json(SimplifiedError);
           }
@@ -46,4 +44,4 @@ const queryValidation = (req, res, next) => {
   return next();
 };
 
-export default queryValidation;
+export default paramValidation;

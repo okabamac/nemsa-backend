@@ -20,16 +20,15 @@ class Userservice {
         );
         if (bycrptResponse) {
           const {
-            id,
+            staff_id,
             first_name,
             last_name,
             is_admin,
             staff_email,
           } = user;
           const userProfile = {
-            id,
+            staff_id,
             is_admin,
-            staff_email,
           };
           const token = await Authservice.signJwt(userProfile);
           return {

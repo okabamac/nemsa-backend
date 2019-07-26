@@ -21,7 +21,8 @@ const RecertificationSchema = new Schema({
   date_of_routine_test: { type: Date, required: true },
   date_of_last_recert: { type: Date, required: true },
   tariff_charges: { type: String, required: true },
-  test_measurement_error: { type: String, required: true }
+  test_measurement_error: { type: String, required: true },
+  staff_id: { type: String, required: true },
 });
 const Recertification = mongoose.model(
   'Recertification',

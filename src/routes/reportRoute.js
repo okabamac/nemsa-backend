@@ -6,8 +6,20 @@ import queryValidation from '../middleware/validation/queryValidator';
 const router = express.Router();
 
 router
-  .get('/byState', [Authservice.authenticate, Authservice.isAdmin], ReportCtrl.byState)
-  .get('/byDate', [Authservice.authenticate, Authservice.isAdmin], ReportCtrl.byDate)
-  .get('/byBatch', [Authservice.authenticate, Authservice.isAdmin], ReportCtrl.byBatch);
+  .get(
+    '/byState',
+    [Authservice.authenticate, Authservice.isAdmin, queryValidation],
+    ReportCtrl.byState,
+  )
+  .get(
+    '/byDate',
+    [Authservice.authenticate, Authservice.isAdmin, queryValidation],
+    ReportCtrl.byDate,
+  )
+  .get(
+    '/byBatch',
+    [Authservice.authenticate, Authservice.isAdmin, queryValidation],
+    ReportCtrl.byBatch,
+  );
 
 export default router;

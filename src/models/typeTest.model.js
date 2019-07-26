@@ -14,7 +14,8 @@ const TypeSchema = new Schema({
   date_certified: { type: Date, required: true },
   expiry_date_after_cert: { type: Date, required: true },
   vendor_email: { type: String, required: true },
-  vendor_phone_number: { type: String, required: true }
+  vendor_phone_number: { type: String, required: true },
+  staff_id: { type: String, required: true },
 });
 const Type = mongoose.model('Type', TypeSchema);
 export default Type;

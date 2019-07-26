@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import Joi from '@hapi/joi';
 import Schemas from './schema/bodySchema';
 
 const bodyValidation = (req, res, next) => {

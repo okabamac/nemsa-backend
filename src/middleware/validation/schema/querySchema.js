@@ -1,11 +1,12 @@
-import Joi from 'joi';
+import Joi from '@hapi/joi';
 
 const string = Joi.string().required();
 
-const date = Joi.string().required();
+const date = Joi.date().required();
 
 const byStateSchema = Joi.object({
   state: string.error(new Error('State must be a string')),
+  month: string.error(new Error('Month must be a string')),
   test: string.error(new Error('Test must be a string')),
 });
 
@@ -15,9 +16,9 @@ const byDateSchema = Joi.object({
   test: string.error(new Error('Test must be a string')),
 });
 
-
 const byBatchSchema = Joi.object({
   batch_id: string.error(new Error('Batch must be a string')),
+  staff_id: string.error(new Error('Staff ID must be a string')),
 });
 
 export default {
