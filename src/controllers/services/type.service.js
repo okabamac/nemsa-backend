@@ -24,7 +24,7 @@ class TypeService {
         state,
       } = req.body;
 
-      const [seal, date] = await Promise.all([`nemsa/${state.replace(/\s/g, '').toLowerCase()}/${crypto.randomBytes(5).toString('hex')}`, TypeService.addYear(new Date(), 2)]);
+      const [seal, date] = await Promise.all([`nemsa-${state.replace(/\s/g, '').toLowerCase()}-${crypto.randomBytes(5).toString('hex')}`, TypeService.addYear(new Date(), 2)]);
       const expiry_date_after_cert = date;
 
       const type = new Type({
