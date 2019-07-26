@@ -37,7 +37,6 @@ class RoutineController {
           res,
           200,
           payload,
-          'Data retrieved successfully',
         );
       }
       return response.sendError(res, 500, 'Something went wrong');
@@ -54,7 +53,6 @@ class RoutineController {
           res,
           200,
           payload,
-          'Data retrieved successfully',
         );
       }
       return response.sendError(res, 500, 'Something went wrong');
