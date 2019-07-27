@@ -27,6 +27,7 @@ class ReportControls {
           $project: {
             month: { $month: '$date_added' },
             state: 1,
+            meter_number: 1,
             date_of_routine_test: 1,
             expiry_date_after_routine_test: 1,
             vendor_name: 1,
