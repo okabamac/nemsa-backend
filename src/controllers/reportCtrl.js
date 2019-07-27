@@ -47,7 +47,7 @@ class ReportControls {
       ]);
 
       if (data.length === 0) {
-        return response.sendSuccess(res, 404, 'No available Data');
+        return response.sendSuccess(res, 404, 'No Available Data');
       }
       return response.sendSuccess(
         res,
@@ -85,7 +85,7 @@ class ReportControls {
           },
         });
       if (data.length === 0) {
-        return response.sendSuccess(res, 404, 'No available Data');
+        return response.sendSuccess(res, 404, 'No Available Data');
       }
       return response.sendSuccess(
         res,
@@ -109,7 +109,7 @@ class ReportControls {
         staff_id: req.query.staff_id,
       });
       if (data.length === 0) {
-        return response.sendSuccess(res, 404, 'No available Data');
+        return response.sendSuccess(res, 404, 'No Available Data');
       }
       return response.sendSuccess(res, 200, data);
     } catch (err) {
